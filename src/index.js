@@ -1,4 +1,4 @@
-import './styles/main.sass'
+import './styles/main.scss'
 
 console.log('hi ')
 
