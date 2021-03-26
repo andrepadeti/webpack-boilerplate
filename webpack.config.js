@@ -10,10 +10,18 @@ const config = {
   output: {
     filename: 'index.[fullhash].js',
     path: path.resolve(__dirname, 'dist'),
+    // next line allows me to use <img src='...'> straight into the html
+    publicPath: '',
   },
-  plugins: [new HtmlWebpackPlugin({ template: './src/index.html', filename: './index.html' })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: './index.html',
+      favicon: './src/assets/favicon.png'
+    }),
+  ],
   mode: 'development',
-  devtool: 'eval-cheap-source-map', 
+  devtool: 'eval-cheap-source-map',
   devServer: {
     port: 8000,
     contentBase: path.resolve(__dirname, 'dist'),
@@ -22,8 +30,17 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.s(a|c)ss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        // this is for sass
+        // test: /\.s(a|c)ss$/,
+        // use: ['style-loader', 'css-loader', 'sass-loader'],
+
+        // and this is for postcss
+        test: /\.css$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader'
+        ],
       },
       {
         test: /\.html$/,
