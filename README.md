@@ -1,6 +1,7 @@
 # Basic Webpack Configuration
 
-This repo holds a basic webpack configuration with hot reload. 
+This repo holds a webpack configuration with hot reload.
+It's loaded with `tailwindcss` and `handlebars`
 
 ## Source
 

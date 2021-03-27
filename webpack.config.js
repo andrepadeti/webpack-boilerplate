@@ -17,11 +17,11 @@ const config = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: './index.html',
-      favicon: './src/assets/favicon.png'
+      favicon: './src/assets/favicon.png',
     }),
   ],
   mode: 'development',
-  devtool: 'eval-cheap-source-map',
+  devtool: 'eval-source-map',
   devServer: {
     port: 8000,
     contentBase: path.resolve(__dirname, 'dist'),
@@ -30,18 +30,19 @@ const config = {
   module: {
     rules: [
       {
-        // this is for sass
+        // this is for sass:
         // test: /\.s(a|c)ss$/,
         // use: ['style-loader', 'css-loader', 'sass-loader'],
 
         // and this is for postcss
-        test: /\.css$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader'
-        ],
+        // test: /\.css$/i,
+        // use: ['style-loader', 'css-loader', 'postcss-loader'],
+
+        // and this is for both!
+        test: /\.s(a|c)ss$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       },
+      { test: /\.hbs$/, loader: 'handlebars-loader' },
       {
         test: /\.html$/,
         loader: 'html-loader',
@@ -74,6 +75,8 @@ const config = {
 
 if (currentTask == 'build') {
   config.mode = 'production'
+  // `delete config.devtool` or the line below
+  config.devtool = 'source-map'
   config.module.rules[0].use[0] = MiniCssExtractPlugin.loader
   config.plugins.push(
     new MiniCssExtractPlugin({ filename: 'main.[fullhash].css' }),

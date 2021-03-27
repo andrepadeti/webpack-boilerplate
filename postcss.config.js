@@ -1,6 +1,9 @@
 module.exports = {
   plugins: {
-    tailwindcss: {},
+    //just in time tailwind plugin:
+    '@tailwindcss/jit': {},
+    // or use the standard tailwind plugin:
+    // tailwindcss: {},
     autoprefixer: {},
   },
   // [
