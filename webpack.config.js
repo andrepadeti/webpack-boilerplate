@@ -12,6 +12,8 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     // next line allows me to use <img src='...'> straight into the html
     publicPath: '',
+    // this is to choose where assets go and what files will be called
+    assetModuleFilename: 'images/[name].[hash][ext][query]',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -23,7 +25,7 @@ const config = {
   mode: 'development',
   devtool: 'eval-source-map',
   devServer: {
-    port: 8000,
+    port: 3000,
     contentBase: path.resolve(__dirname, 'dist'),
     hot: true,
   },
@@ -61,13 +63,18 @@ const config = {
         },
       },
       // asset modules https://webpack.js.org/guides/asset-modules/
+      // {
+      //   test: /\.svg$/,
+      //   type: 'asset/inline',
+      // },
+      // {
+      //   test: /\.(png|jpg|gif)$/i,
+      //   type: 'asset/resource',
+      // },
+      // instead of asset/inline and asset/resource, this is simpler:
       {
-        test: /\.svg$/,
-        type: 'asset/inline',
-      },
-      {
-        test: /\.(png|jpg|gif)$/i,
-        type: 'asset/resource',
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: 'asset',
       },
     ],
   },

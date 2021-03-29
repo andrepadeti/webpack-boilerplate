@@ -22,6 +22,7 @@
     "css-loader": "^5.0.1",
     "handlebars": "^4.7.7",
     "handlebars-loader": "^1.7.1",
+    "handlebars-template-loader": "^1.0.0",
     "html-loader": "^1.3.2",
     "html-webpack-plugin": "^4.5.1",
     "mini-css-extract-plugin": "^1.3.5",
